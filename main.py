@@ -1,5 +1,4 @@
-#VARIAVEIS
-import json
+
 #função que adciona um contato no dicionario
 def adicionar_contato ():
     contatos={}
@@ -34,18 +33,25 @@ def ler_agenda():
     
 
 #função que pega as linhas do arquivo o transforma em um dicionario
-def pegar_linhas(dict):
+def pegar_linhas(list):
+    listanome=[]
+    listtel=[]
     with open ("Agenda telefonica.txt", "r") as arquipy:
         linhas = arquipy.readlines()
-        contlinhas=0
-        for lines in linhas:
-            if (contlinhas %2 == 0):
-                dict["nome"]=linhas
-            elif (contlinhas %2 != 0):
-                dict["telefone"]=linhas
-            contlinhas =contlinhas+1
-        for n in dict.items():
-            print(n)
+        
+        for i in range(1,100):
+            if(i%2!=0):
+                listanome =linhas
+            elif(i%2==0):
+                
+                listtel = linhas
+            
+            
+    
+            
+        print(listanome)
+        print(listtel)
+       
 
 
 def procurar_numero():
@@ -55,6 +61,17 @@ def procurar_numero():
     if procura in contatos.values():
         print("Contato de {}, foi encontrado!").format([procura])
 
+#funcao que remove o arquivo
+def apagar_agenda():
+    
+    resposta = str(input("Certeza que deseja apagar a agenda?[s/n]"))
+    if(resposta == "s"):
+        with open ("Agenda telefonica.txt", "r+") as arquivopy:
+            arquivopy.truncate(0) #a função truncate "redimensiona" o arquivo, no caso para tamanho 0, que 
+            #apaga os elementos existentes
+    else:
+        print ("Ação cancelada!")
+
 #MENU e criação da agenda.txt
 with open('Agenda telefonica.txt','r') as arquivopy:
     contatos={}
@@ -62,13 +79,14 @@ with open('Agenda telefonica.txt','r') as arquivopy:
     option=0
     while(option !=8):
         print("-------MENU------")
-        print("1- Adicionar contato")
-        print("2- Listar agenda")
+        print("1 - Adicionar contato")
+        print("2 - Listar agenda")
         print("3 - Procurar contato por número")
         print("4 - Procurar contato por nome")
         print("5 - Alterar contato")
         print("6 - Excluir contato")
         print("7 - Apagar agenda")
+        print("8 - Sair")
         option =  (int(input("Digite a sua opção: ")))
         match (option):
             case 1:
@@ -77,5 +95,7 @@ with open('Agenda telefonica.txt','r') as arquivopy:
                 ler_agenda()
             case 3:
                 procurar_numero()
+            case 7:
+                apagar_agenda()
             case 8:
                 print("Agenda fechando...")
