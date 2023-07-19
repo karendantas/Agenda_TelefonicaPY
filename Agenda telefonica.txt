@@ -1,0 +1,5 @@
+karen
+2353456
+{'karen': {'nome': 'karen', 'telefone': 2343536}}
+{'karen': {'nome': 'karen', 'telefone': 3}}
+{'karen': {'nome': 'karen', 'telefone': 3}, 'lari': {'nome': 'lari', 'telefone': 5476}}
