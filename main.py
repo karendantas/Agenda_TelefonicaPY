@@ -1,11 +1,6 @@
-
 #função que adciona um contato no dicionario
 def adicionar_contato ():
     contatos={}
-
-    
-    #while que verificar se o usuario decide add mais um contato
-    
     with open('Agenda telefonica.txt','a') as arquivopy:
             
         nome= str(input("Digite seu nome: "))
@@ -24,6 +19,7 @@ def ler_agenda():
         linhas=arquivopy.readlines() #variavel linhas recebe funcao que le as linhas do arquivo
         for lines in linhas:
          print(lines)
+
 
 
 #função que pega as linhas do arquivo o transforma em um dicionario
@@ -51,27 +47,29 @@ def pegar_linhas():
     print(contatos)#esse print é so pra eu ver se deu certo dps apago(lembrete para karen do futuro)
 
 
+
 #funcao que mostra o tamanho da agenda (pelo tamanho do dicionario)   
 def tamanho_agenda ():
-    print (len(contatos))
+    print ("O número de contatos que a agenda possui no momento é de: " + len(contatos))
+
 
 #função que procura pelo nome
 def procurar_nome():
+    
     procura = str(input("Digite seu nome: "))
     if procura in contatos.keys():
         print ("O contato de '{}' e seu número '{}', foi encontrado na agenda!" .format(procura, contatos[procura]))
     else:
         print ("Contato não encontrado")
     
-    #print("O contato: "+ contatos[procura]+ "está na agenda!")
-    #if(procura != contatos):
-        #print("Contato não encontrado.")
+  
+
 
 #função que procura pelo numero
 def procurar_numero():
-    procura = str(input("Digite seu número:"))
-    if procura in contatos.values():
-        print ("O número '{}', do contato '{}', foi encontrado na agenda!" .format(procura, contatos[4]))
+    procuranumero = str(input("Digite seu número:"))
+    if procuranumero in contatos.values():
+        print ("O número '{}', foi encontrado na agenda!" .format(procuranumero))
     else:
         print("Número não foi encontrado.")
 
