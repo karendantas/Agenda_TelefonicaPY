@@ -50,7 +50,8 @@ def pegar_linhas():
 
 #funcao que mostra o tamanho da agenda (pelo tamanho do dicionario)   
 def tamanho_agenda ():
-    print ("O número de contatos que a agenda possui no momento é de: " + len(contatos))
+    print ("O número de contatos que a agenda possui no momento é de: ", len(contatos))
+    #a funçao len le o tamanho do dicionario (assim como poder ler o tamanho de uma lista também)
 
 
 #função que procura pelo nome
@@ -73,6 +74,46 @@ def procurar_numero():
     else:
         print("Número não foi encontrado.")
 
+
+#funcao para alterar um contato()
+def alterar_contato():
+    procurar_cont = str(input("Digite seu nome: "))
+    if procurar_cont in contatos:
+        del contatos[procurar_cont]
+        #del é uma keyword que deleta o elemento nas chaves
+
+        novo_nome=str(input("Digite o novo nome: "))
+        novo_tel = input("Digite o novo número")
+        contatos[novo_nome]=novo_tel
+
+        with open ("Agenda telefonica.txt", 'a') as arquivopy:
+            arquivopy.truncate(0) #apago a agenda para inserir o novo dicionario com o contato alterado
+            for nome, telefone in contatos.items():
+                arquivopy.write(str(nome)+"\n"+str(telefone)+"\n")
+
+        print("O contato foi alterado!")
+    else:
+        print("Desculpe, contato não encontrado!")
+
+
+
+#funcao para deletar um contato(essa não difere tanto da de alterar, os passos seguem praticamente os mesmos)
+def excluir_contato():
+    procurar_cont = str(input("Digite o nome do contato que deseja excluir: "))
+    if procurar_cont in contatos:
+        del contatos[procurar_cont]
+  
+        with open ("Agenda telefonica.txt", 'a') as arquivopy:
+            arquivopy.truncate(0)
+            for nome, telefone in contatos.items():
+                arquivopy.write(str(nome)+"\n"+str(telefone)+"\n")
+
+        print("O contato foi apagado da agenda!")
+    else:
+        print("Desculpe, contato não encontrado!")
+
+
+
 #funcao que remove o arquivo
 def apagar_agenda():
     
@@ -83,6 +124,7 @@ def apagar_agenda():
             #apaga os elementos existentes
     else:
         print ("Ação cancelada!")
+
 
 #MENU e criação da agenda.txt
 with open('Agenda telefonica.txt','r') as arquivopy:
@@ -112,7 +154,11 @@ with open('Agenda telefonica.txt','r') as arquivopy:
                 procurar_numero()
             case 5:
                 procurar_nome()
+            case 6:
+                alterar_contato()
             case 7:
-                apagar_agenda()
+                excluir_contato()
             case 8:
+                apagar_agenda()
+            case 9:
                 print("Agenda fechando...")
