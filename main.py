@@ -129,9 +129,9 @@ def apagar_agenda():
 #MENU e criação da agenda.txt
 with open('Agenda telefonica.txt','r') as arquivopy:
     
-    pegar_linhas()
     option=0
     while(option !=9):
+        pegar_linhas()
         print("-------MENU------")
         print("1 - Adicionar contato")
         print("2 - Listar agenda")
@@ -145,7 +145,12 @@ with open('Agenda telefonica.txt','r') as arquivopy:
         option =  (int(input("Digite a sua opção: ")))
         match (option):
             case 1:
-                adicionar_contato()
+                max_cont = len(contatos)
+                if max_cont <100:
+                    adicionar_contato()
+                else:
+                    print("Limite da agenda alcançado")
+                   
             case 2:
                 ler_agenda()
             case 3:
